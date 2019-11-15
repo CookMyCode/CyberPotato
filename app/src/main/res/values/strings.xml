@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CyberPotato</string>
+    <string name="server_status">IP:192.168.111.111\nPORT:80\nSVR:Running</string>
+    <string name="log_preview_firstRow">[20:55]# start..</string>
+    <string name="log_preview_secondRow">[20:56]# receive..</string>
+    <string name="log_preview_thirdRow">[20:56]# send..</string>
+    <string name="log_preview_fourthRow">[20:57]# shutdown..</string>
+    <string name="setting_port">PORT:</string>
+    <string name="setting_receive">RCV:</string>
+    <string name="setting_send">SND:</string>
+    <string name="setting_uncheck_mode">Firewall</string>
+    <string name="setting_keep_alive">Daemon Keeper</string>
+    <string name="setting_export_root">Export Root</string>
+    <string name="setting_version">Ver:1.0.1</string>
+    <string name="positive_number_inputFilter">.0123456789MB</string>
+    <drawable name="clr_normal">@color/colorButtonNormal</drawable>
+    <drawable name="clr_pressed">@color/colorButtonPressed</drawable>
+    <drawable name="item_clr_normal">@color/colorListItemNormal</drawable>
+    <drawable name="item_clr_pressed">@color/colorListItemPressed</drawable>
+</resources>

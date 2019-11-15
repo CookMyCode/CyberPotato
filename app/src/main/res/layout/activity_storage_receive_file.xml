@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/storage_receive_file_BG"
+        android:layout_width="1010px"
+        android:layout_height="700px"
+        android:layout_marginTop="200px"
+        android:background="@color/colorButtonNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/storage_receive_file_Title"
+        android:layout_width="650px"
+        android:layout_height="205px"
+        android:layout_marginStart="30px"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="30px"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/file_title"
+        app:layout_constraintLeft_toLeftOf="@+id/storage_receive_file_BG"
+        app:layout_constraintTop_toTopOf="@+id/storage_receive_file_BG" />
+
+    <ImageButton
+        android:id="@+id/storage_receive_file_CloseButton"
+        android:layout_width="170px"
+        android:layout_height="170px"
+        android:layout_marginTop="50px"
+        android:layout_marginEnd="50px"
+        android:layout_marginRight="50px"
+        android:background="@drawable/button_selector"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_button"
+        app:layout_constraintRight_toRightOf="@+id/storage_receive_file_BG"
+        app:layout_constraintTop_toTopOf="@+id/storage_receive_file_BG" />
+
+    <TextView
+        android:id="@+id/storage_receive_file_FileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60px"
+        android:layout_marginLeft="60px"
+        android:layout_marginTop="40px"
+        android:background="@null"
+        android:text="Name: 123.txt"
+        android:textColor="@color/colorHighLight"
+        android:maxEms="11"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:textSize="65px"
+        app:layout_constraintLeft_toLeftOf="@+id/storage_receive_file_BG"
+        app:layout_constraintTop_toBottomOf="@+id/storage_receive_file_Title" />
+
+    <TextView
+        android:id="@+id/storage_receive_file_Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:background="@null"
+        android:text="Status: valid"
+        android:textColor="@color/colorHighLight"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:textSize="65px"
+        app:layout_constraintLeft_toLeftOf="@+id/storage_receive_file_FileName"
+        app:layout_constraintTop_toBottomOf="@+id/storage_receive_file_FileName" />
+
+    <TextView
+        android:id="@+id/storage_receive_file_Path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:background="@null"
+        android:text="Path:"
+        android:textColor="@color/colorHighLight"
+        android:maxEms="8"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:textSize="65px"
+        app:layout_constraintLeft_toLeftOf="@+id/storage_receive_file_FileName"
+        app:layout_constraintTop_toBottomOf="@+id/storage_receive_file_Status" />
+
+    <ScrollView
+        android:id="@+id/storage_receive_file_PathContentScrollView"
+        android:layout_width="520px"
+        android:layout_height="180px"
+        android:layout_marginLeft="50px"
+        android:background="@null"
+        app:layout_constraintLeft_toRightOf="@+id/storage_receive_file_Path"
+        app:layout_constraintTop_toTopOf="@+id/storage_receive_file_Path">
+        <TextView
+            android:id="@+id/storage_receive_file_PathContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:includeFontPadding="false"
+            android:text="/emu/tmp/sdk/de/gty/nhn/123.txt"
+            android:textColor="@color/colorHighLight"
+            android:textSize="65px" />
+    </ScrollView>
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/storage_receive_file_OpenDirButton"
+        android:layout_width="100px"
+        android:layout_height="80px"
+        android:background="@null"
+        android:src="@drawable/open_dir_button"
+        android:scaleType="centerInside"
+        app:layout_constraintLeft_toRightOf="@+id/storage_receive_file_PathContentScrollView"
+        app:layout_constraintTop_toTopOf="@+id/storage_receive_file_Path"
+        android:layout_marginLeft="40px"/>
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/storage_receive_file_OpenDirButtonMask"
+        android:layout_width="100px"
+        android:layout_height="80px"
+        android:scaleType="centerCrop"
+        android:background="@color/colorScreen2"
+        app:layout_constraintLeft_toLeftOf="@+id/storage_receive_file_OpenDirButton"
+        app:layout_constraintTop_toTopOf="@+id/storage_receive_file_OpenDirButton"/>
+    <ImageButton
+        android:tag="remove"
+        android:id="@+id/storage_receive_file_RemoveButton"
+        android:layout_width="1010px"
+        android:layout_height="210px"
+        android:layout_marginTop="15px"
+        android:background="@drawable/button_selector"
+        android:scaleType="centerCrop"
+        android:src="@drawable/remove_file_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storage_receive_file_BG" />
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/storage_receive_file_RemoveButtonMask"
+        android:layout_width="1010px"
+        android:layout_height="210px"
+        android:scaleType="centerCrop"
+        android:background="@color/colorScreen2"
+        app:layout_constraintLeft_toLeftOf="@+id/storage_receive_file_RemoveButton"
+        app:layout_constraintTop_toTopOf="@+id/storage_receive_file_RemoveButton"/>
+</android.support.constraint.ConstraintLayout>

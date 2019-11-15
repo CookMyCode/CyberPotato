@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorScreen">#000000</color>
+    <color name="colorButtonNormal">#A6262421</color>
+    <color name="colorButtonPressed">#F9262421</color>
+    <color name="colorHighLight">#FDFB98</color>
+    <color name="colorDim">#60FDFB98</color>
+    <color name="colorScreen2">#50000000</color>
+    <color name="colorListItemNormal">#00FFFFFF</color>
+    <color name="colorListItemPressed">#0AFFFFFF</color>
+    </resources>

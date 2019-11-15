@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.codig.CyberPotato">
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <application
+        android:name=".CyberPotato"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:launchMode="singleTop"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service android:name="com.codig.CyberPotato.service.HttpService"/>
+        <!--<service android:name=".HttpService$DisguiseService" />-->
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SettingActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".DevicesActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".DevicesInfoActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".ServerInfoActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".MessageActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".AccessActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".StorageActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".PublicFileInfoActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".ReceiveFileInfoActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".EventLogActivity" android:theme="@style/SecondaryActivity"/>
+        <activity android:name=".VersionActivity"/>
+    </application>
+</manifest>

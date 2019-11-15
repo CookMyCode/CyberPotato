@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null">
+        <ImageView
+            android:id="@+id/message_MailButton"
+            android:layout_width="match_parent"
+            android:layout_height="210px"
+            android:scaleType="fitStart"
+            android:src="@drawable/message_mail_button"
+            android:background="@drawable/list_item_selector"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:id="@+id/message_DecorativeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="from:"
+            android:textSize="50px"
+            android:singleLine="true"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorHighLight"
+            app:layout_constraintLeft_toLeftOf="@+id/message_MailButton"
+            app:layout_constraintRight_toRightOf="@+id/message_MailButton"
+            app:layout_constraintTop_toTopOf="@+id/message_MailButton"
+            app:layout_constraintBottom_toBottomOf="@+id/message_MailButton"
+            android:layout_marginBottom="65px"
+            android:layout_marginRight="300px"/>
+        <TextView
+            android:id="@+id/message_IP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="192.168.137.12"
+            android:textSize="65px"
+            android:singleLine="true"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorHighLight"
+            app:layout_constraintLeft_toLeftOf="@+id/message_DecorativeText"
+            app:layout_constraintTop_toBottomOf="@+id/message_DecorativeText"/>
+</android.support.constraint.ConstraintLayout>

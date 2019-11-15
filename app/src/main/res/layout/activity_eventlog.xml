@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/eventLog_BG"
+        android:layout_width="1010px"
+        android:layout_height="1565px"
+        android:layout_marginTop="50px"
+        android:background="@color/colorButtonNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ListView
+        android:id="@+id/eventLog_ListView"
+        android:layout_width="913px"
+        android:layout_height="1205px"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eventLog_BG"
+        android:layout_marginTop="110px"
+        android:layout_marginLeft="40px"/>
+    <ImageView
+        android:id="@+id/eventLog_DecorativeCircleTop"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:src="@drawable/log_decorative_line_circle"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="@+id/eventLog_DecorativeLineVertical"
+        app:layout_constraintStart_toStartOf="@+id/eventLog_DecorativeLineVertical"
+        app:layout_constraintBottom_toTopOf="@+id/eventLog_ListView"/>
+    <View
+        android:id="@+id/eventLog_DecorativeLineVertical"
+        android:layout_width="11px"
+        android:layout_height="1208px"
+        android:background="@color/colorHighLight"
+        app:layout_constraintLeft_toLeftOf="@+id/eventLog_ListView"
+        app:layout_constraintTop_toTopOf="@+id/eventLog_ListView"
+        app:layout_constraintBottom_toBottomOf="@+id/eventLog_ListView"/>
+    <ImageView
+        android:id="@+id/eventLog_DecorativeCircleBottom"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:src="@drawable/log_decorative_line_circle"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="@+id/eventLog_DecorativeLineVertical"
+        app:layout_constraintStart_toStartOf="@+id/eventLog_DecorativeLineVertical"
+        app:layout_constraintTop_toBottomOf="@+id/eventLog_ListView"/>
+    <ImageButton
+        android:id="@+id/eventLog_CloseButton"
+        android:layout_width="103px"
+        android:layout_height="81px"
+        android:scaleType="centerCrop"
+        android:src="@drawable/log_close_button"
+        android:background="@drawable/button_selector"
+        app:layout_constraintBottom_toBottomOf="@+id/eventLog_BG"
+        app:layout_constraintLeft_toLeftOf="@+id/eventLog_BG"
+        android:layout_marginBottom="50px"
+        android:layout_marginLeft="50px"
+        android:layout_marginStart="50px" />
+</android.support.constraint.ConstraintLayout>

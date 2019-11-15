@@ -1,0 +1,431 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>CyberPotato</title>
+		<style type="text/css">
+.downloadListChild{
+	font-family:Arial,Helvetica,sans-serif,Microsoft YaHei;
+    height:50px;
+	width:340px;
+	background-color:#f2f2f2;
+	margin-top:4px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+a{color:#333;text-decoration:none;display:block;}
+a:visited{color:#888;}
+a:hover{color:#BBB;background-color:#444;}
+a:active{color:#AAA;background-color:#444;}
+#app{
+	font-family:Arial,Helvetica,sans-serif,Microsoft YaHei;
+	width:340px;
+	height:30px;
+	background-color:#444;
+	color:#CCC;
+	margin-top:4px;
+	text-align:center;
+	vertical-align:middle;
+}
+#app:hover{color:#BBB;background-color:#000;}
+.container{width:255px;height:80px;background-color:#e6e6e6;}
+.container:hover{background-color:#ececec;}
+.container:active{background-color:#ececec;}
+.progress{
+	z-index:0;
+    height:80px;
+	width:0px;
+    background-color:orange;
+    display:inline-block;
+	overflow:visible;
+}
+.fileInfo{
+	height:25px;
+	z-index:1;
+	width:255px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	font-size20px;
+}
+button{
+	font-family:Arial,Helvetica,sans-serif,Microsoft YaHei;
+	width:340px;
+	height:50px;
+	font-size:18px;
+	background-color:#333;
+	color:#ccc;
+	border-style:none;
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
+button:hover{color:#BBB;background-color:#000;}
+.bgText{
+	font-family:Arial,Helvetica,sans-serif,Microsoft YaHei;
+	margin: 0 auto;
+	width:340px;
+	height:80px;
+	line-height:80px;
+	font-size:22px;
+	background-color:none;
+	color:#CCC;
+	border-style:none;
+	text-align:center;
+}
+.uploadListButton{
+	width:45px;
+	height:80px;
+	line-height:80px;
+	text-align:center;
+	margin: 0 auto;
+	vertical-align:middle;
+	background-color:#444;
+	color:#fff;float:right;
+	cursor:pointer;
+}
+.uploadListButton:hover{opacity:0.9;}
+.uploadListChild{
+	width:340px;
+	height:80px;
+	margin-top:10px;
+}
+.listTitle{
+	width:170px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background-color:#f3f3f3;
+	float:left;
+	color:#000;
+	font-size:18px;
+	cursor:pointer;
+}
+.listTitle:hover{opacity:0.9;}
+.listTitle:active{opacity:0.9;}
+.listMod{
+	z-index:1;
+	position:absolute;
+}
+</style>
+<link rel="icon" href="data:image/ico;base64,aWNv">
+</head>
+<body>
+	<div style="width:340px;height:400px;background-color:#fefefe;margin: 0 auto;">
+		<iframe id="fileList" style="visibility:hidden;height:0px;" src="fileList.html" frameborder="0" scrolling="auto"></iframe>
+		<a id="app" href="javascript:void(0);" onclick="downloadFile(0)">下载CyberPotato安卓APP</a>
+		<div style="width:340px;height:40px;margin-top:5px;">
+			<div id="downloadListTitle" class="listTitle" onclick="listChange(1)">下载列表</div>
+			<div id="uploadListTitle" class="listTitle" onclick="listChange(0)" style="background-color:#aaa;color:#fff;">上传列表</div>
+		</div>
+		<div id="downloadListMod" class="listMod" style="">
+			<div id="downloadList"></div>
+			<br><br><br><br><br>
+		</div>
+		<div id="uploadListMod" class="listMod" style="display:none;">
+			<div id="uploadList"></div>
+			<div class="container" onclick="choseFile()" style="cursor:pointer;width:340px;margin-top:10px;">
+				<div class="bgText">添加上传文件</div>
+			</div>
+			<br><br><br><br><br><br><br>
+		</div>
+		<div class="bgText" style="width:340px;height:80px;z-index:0;position:absolute;">找不到可下载的文件</div>
+		<input style="display: none" type="file" name="file" id="file" onchange="getFileInfo()">
+	</div>
+	<script type="text/javascript">
+	//上传列表和下载列表切换
+	function listChange(code){
+		var downloadListTitle=document.getElementById("downloadListTitle");
+		var uploadListTitle=document.getElementById("uploadListTitle");
+		var downloadListMod=document.getElementById("downloadListMod");
+		var uploadListMod=document.getElementById("uploadListMod");
+		if(code==1){
+			downloadListTitle.setAttribute('style','');
+			uploadListTitle.setAttribute('style','background-color:#aaa;color:#fff;');
+			downloadListMod.setAttribute('style','');
+			uploadListMod.setAttribute('style','display:none;');
+		}
+		else{
+			downloadListTitle.setAttribute('style','background-color:#aaa;color:#fff;');
+			uploadListTitle.setAttribute('style','background-color:#e6e6e6;');
+			downloadListMod.setAttribute('style','display:none;');
+			uploadListMod.setAttribute('style','');
+		}
+	}
+
+	var worker=new Worker("heartBeat.js");
+	worker.onmessage=function (e) {
+		if(e.data){
+			updateFileList();
+		}
+		else{
+			alert("连接失效，请刷新网页");
+			worker.terminate();
+		}
+	}
+	window.alert = function(str) {
+		var insulation = document.createElement("div");
+		insulation.id="alertBoxInsulation";
+		insulation.style.position = "fixed";
+		insulation.style.top="0";
+		insulation.style.left="0";
+		insulation.style.width = "100%";
+		insulation.style.height = window.screen.height+"px";
+		insulation.style.zIndex = "99";
+		insulation.style.background = "#000";
+		insulation.style.opacity="0.6";
+		var alertBox = document.createElement("div");
+		alertBox.id="alertBox";
+		alertBox.style.position = "fixed";
+		alertBox.style.width = "340px";
+		alertBox.style.height = "150px";
+		alertBox.style.background = "#F2F2F2";
+		alertBox.style.border = "1px solid grey";
+		alertBox.style.margin = "auto";
+		alertBox.style.left="0";
+		alertBox.style.right="0";
+		alertBox.style.top="0";
+		alertBox.style.bottom="0";
+		alertBox.style.textAlign = "center";
+		alertBox.style.zIndex = "100";
+		var strHtml = "";
+		strHtml += '<div id="title">提示：</div>';
+		strHtml += '<div id="content">'+str+'</div>';
+		strHtml += '<input id="btn" type="button" value="确 定" onclick="certainFunc()"/>';
+		alertBox.innerHTML = strHtml;
+		document.body.appendChild(insulation);
+		document.body.appendChild(alertBox);
+		var title = document.getElementById("title");
+		title.style.textAlign = "left";
+		title.style.marginTop = "20px";
+		title.style.paddingLeft = "20px";
+		title.style.height = "30px";
+		title.style.fontSize = "15px";
+		var content = document.getElementById("content");
+		content.style.margin = "15px";
+		content.style.fontSize = "15px";
+		var btn = document.getElementById("btn");
+		btn.style.width = "60px";
+		btn.style.height = "30px";
+		btn.style.background = "#ccc";
+		btn.style.border = "0px";
+		btn.style.position = "absolute";
+		btn.style.borderRadius = "5px";
+		btn.style.right = "20px";
+		btn.style.bottom = "20px";
+		btn.style.marginTop = "10px";
+		btn.style.cursor = "pointer";
+		btn.style.color = "#333";
+		certainFunc = function() {
+			alertBox.parentNode.removeChild(alertBox);
+			insulation.parentNode.removeChild(insulation);
+		};
+	}
+	function downloadFile(id){
+		window.location.href="download?file="+id;
+	}
+	function choseFile(){
+        document.getElementById('file').click();
+    }
+	var filesArr=new Array();//存放上传文件对象
+	var xhrArr=new Array();//存放上传Ajax对象
+    function getFileInfo(){
+		//TODO 创建新的container和上传按钮.增加一个循环，遍历files数组,将files[]加入到filesArr
+		var fileElem=document.getElementById('file');
+		len=fileElem.files.length;
+		fileNum=len;
+		for(i=0;i<len;i++){
+			file = document.getElementById('file').files[i];
+			if (file){
+				for(i=0;i<filesArr.length;i++){
+					if(filesArr[i]!=null&&filesArr[i].name==(file.name)){
+						alert("文件名重复，添加失败");
+						fileElem.outerHTML=fileElem.outerHTML;//清除缓存
+						return;
+					}
+				}
+				if(window.ActiveXObject)
+					xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				else if(window.XMLHttpRequest)
+					xhr = new XMLHttpRequest();
+				xhrArr.push(xhr);//添加Ajax对象
+				fileNum+=i;
+				filesArr.push(file);//添加文件对象
+				fileSize=(file.size>1024*1024)?(Math.round(file.size*100/(1024*1024))/100).toString()+'MB':(Math.round(file.size*100/1024)/100).toString()+'KB';
+				fileNameDiv=document.createElement('div');
+				fileNameDiv.setAttribute('class','fileInfo');
+				fileNameDiv.innerHTML='文件: '+file.name;
+				fileSizeDiv=document.createElement('div');
+				fileSizeDiv.setAttribute('class','fileInfo');
+				fileSizeDiv.innerHTML='大小: '+fileSize;
+				fileStatusDiv=document.createElement('div');
+				fileStatusDiv.setAttribute('id','fileStatus'+fileNum);//设置id
+				fileStatusDiv.setAttribute('class','fileInfo');
+				fileStatusDiv.innerHTML='状态: 待上传';
+				info=document.createElement('div');
+				info.setAttribute('style','z-index:1;position:absolute;');
+				progress=document.createElement('div');
+				progress.setAttribute('id','progress'+fileNum);//设置id
+				progress.setAttribute('class','progress');
+				container=document.createElement('div');
+				container.setAttribute('class','container');
+				uploadListButton1=document.createElement('div');
+				uploadListButton1.setAttribute('id','uploadListChildButton'+fileNum);//设置id
+				uploadListButton1.setAttribute('class','uploadListButton');
+				uploadListButton1.setAttribute('style','width:45px;');
+				uploadListButton1.innerHTML='上传';
+				uploadListButton1.setAttribute('onclick','uploadFile('+fileNum+')');//TODO 点击上传
+				uploadListButton2=document.createElement('div');
+				uploadListButton2.setAttribute('class','uploadListButton');
+				uploadListButton2.setAttribute('style','width:40px;background-color:#bbb;');
+				uploadListButton2.innerHTML='移除';
+				uploadListButton2.setAttribute('onclick','removeUploadListChild('+fileNum+')');//TODO 点击移除
+				uploadListChild=document.createElement('div');
+				uploadListChild.setAttribute('id','uploadListChild'+fileNum);//设置id
+				uploadListChild.setAttribute('class','uploadListChild');
+				info.appendChild(fileNameDiv);
+				info.appendChild(fileSizeDiv);
+				info.appendChild(fileStatusDiv);
+				progress.appendChild(info);
+				container.appendChild(progress);
+				uploadListChild.appendChild(uploadListButton1);
+				uploadListChild.appendChild(uploadListButton2);
+				uploadListChild.appendChild(container);
+				ul=document.getElementById('uploadList');
+				ul.appendChild(uploadListChild);
+			}
+		}
+		fileElem.outerHTML=fileElem.outerHTML;//清除缓存
+    }
+	function removeUploadListChild(fileNum){
+		var elem=document.getElementById('uploadListChild'+fileNum);
+		elem.parentNode.removeChild(elem);
+		filesArr[fileNum-1]=null;
+		xhr=xhrArr[fileNum-1];
+		xhr.abort();
+		xhrArr[fileNum-1]=null;
+	}
+    function uploadFile(fileNum){
+		var file=filesArr[fileNum-1];
+		if(file==null){
+			document.getElementById('fileStatus'+fileNum).innerHTML='状态: 找不到文件';
+			return;
+		}
+        var fd=new FormData();
+        fd.append("myfile", file);
+		var xhr=xhrArr[fileNum-1];
+		if(xhr==null){
+			return;
+		}
+		//通过按钮innerHTML判断此时按钮是取消还是上传，并作出相应的点击事件
+		var uploadButton=document.getElementById('uploadListChildButton'+fileNum);
+		if(uploadButton.innerHTML=='上传'){
+			uploadButton.innerHTML='取消';
+			//监听进度
+			xhr.upload.addEventListener("progress", function(evt){
+				if (evt.lengthComputable){
+					var percent=Math.round(evt.loaded*100/evt.total);
+					document.getElementById('progress'+fileNum).style.width=percent.toFixed(2)+'%';
+				}
+				else {
+					document.getElementById('fileStatus'+fileNum).innerHTML='状态: 上传失败';
+					//上传结束将“取消”修改为“上传”，取消监听器
+					uploadButton.innerHTML='上传';
+				}
+			}, false);
+			//监听结果
+			xhr.addEventListener("load", function(evt){
+				document.getElementById('fileStatus'+fileNum).innerHTML='状态: 上传成功';
+				//上传结束将“取消”修改为“上传”，取消监听器
+				uploadButton.innerHTML='上传';
+			}, false);
+			//监听结果
+			xhr.addEventListener("error", function(evt){
+				document.getElementById('fileStatus'+fileNum).innerHTML='状态: 上传失败';
+				//上传结束将“取消”修改为“上传”，取消监听器
+				uploadButton.innerHTML='上传';
+			}, false);
+			//发送文件
+			try{
+				xhr.open("post", "upload",true);
+				document.getElementById('fileStatus'+fileNum).innerHTML='状态: 正在上传';
+				xhr.send(fd);
+			}catch(err){
+				document.getElementById('fileStatus'+fileNum).innerHTML='状态: 上传失败';
+				//上传结束将“取消”修改为“上传”，取消监听器
+				uploadButton.innerHTML='上传';
+			}
+		}else{
+			uploadButton.innerHTML='上传';
+			document.getElementById('fileStatus'+fileNum).innerHTML='状态: 上传取消';
+			xhr.abort();
+		}
+
+    }
+	function updateFileList(){
+		var iframe=document.getElementById("fileList");
+		var iwindow=iframe.contentWindow;
+		var idoc=iwindow.document;//子页面
+		var pdoc=window.document;
+		//遍历父页面的下载列表，如果不存在子页面的元素则删除
+		var plistNum=pdoc.getElementsByName('downloadListChild').length;
+		for(i=0;i<plistNum;i++){
+			var fileHash=pdoc.getElementsByName('downloadListChild')[i].id;//获取文件的哈希码
+			//删除不存在于子页面的文件
+			if(idoc.getElementById(fileHash)==null){
+				deleteDivInParent(fileHash);
+				plistNum--;
+				i--;
+			}
+		}
+		//遍历子页面的元素，如果父页面不存在则创建
+		var clistNum=idoc.getElementsByTagName('input').length;
+		for(i=0;i<clistNum;i++){
+			var file=idoc.getElementsByTagName('input')[i];
+			if(pdoc.getElementById(file.id)==null){
+				createDivInParent("downloadList",file.id,file.name,file.value);
+			}
+		}
+		iframe.contentWindow.location.reload(true);
+	}
+	function createDivInParent(pId,cId,fileName,fileSize){
+		var target=null;
+		if((target=parent.window.document.getElementById(pId))==null) return;
+		var div=document.createElement('a');
+		div.id=cId;
+		div.setAttribute('href', "javascript:void(0);");
+		div.setAttribute('name', "downloadListChild");
+		div.setAttribute('class', "downloadListChild");
+		div.setAttribute('onclick', 'downloadFile('+cId+')');
+		div.innerHTML='文件: '+fileName+'\<br/\> 大小: '+fileSize;
+		target.appendChild(div);
+	}
+	function deleteDivInParent(id){
+		var div=parent.window.document.getElementById(id);
+		if (div!=null) div.parentNode.removeChild(div);
+	}
+	function downloadFile(id){
+		xhrn=new XMLHttpRequest();
+		if(xhrn==undefined) xhrn=new ActiveXObject("Microsoft.XMLHTTP");
+		xhrn.onreadystatechange=function(){
+			if (xhrn.readyState==4){
+				if(xhrn.status==200)
+					window.location.href="download?file="+id;
+				else if(xhrn.status==202||xhrn.status==404)
+					alert("文件不存在");
+				else
+					alert("连接中断");
+			}
+		};
+		try{
+			xhrn.open("HEAD", "download?file="+id,true);
+		}catch(err){
+			alert("连接中断");
+		}
+		xhrn.send("");
+	}
+</script>
+</body>
+</html>

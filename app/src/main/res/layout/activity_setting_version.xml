@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.codig.CyberPotato.widget.PullDownDumperLayout
+        android:id="@+id/version_PullDownDumper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@null"
+        android:orientation="vertical"
+        android:clickable="true">
+        <ImageView
+            android:id="@+id/version_HeadLayout"
+            android:layout_width="match_parent"
+            android:layout_height="1920px"
+            android:background="@null"
+            android:src="@drawable/maker_info"
+            android:scaleType="centerInside"
+            android:clickable="true"/>
+        <LinearLayout
+            android:id="@+id/version_Info"
+            android:layout_width="1010px"
+            android:layout_height="900px"
+            android:orientation="vertical"
+            android:background="@color/colorButtonNormal"
+            android:clickable="true"
+            android:layout_marginTop="120px"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/version_Version"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:background="@null"
+                android:layout_marginTop="150px"
+                android:layout_marginLeft="40px"
+                android:text="Version: 1.0.0"
+                android:textSize="90px"
+                android:textColor="@color/colorHighLight"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:background="@null"
+                android:layout_marginLeft="40px"
+                android:text="Maker: ██i█████"
+                android:textSize="90px"
+                android:textColor="@color/colorHighLight"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:background="@null"
+                android:layout_marginLeft="40px"
+                android:text="Email: █████@██.com"
+                android:textSize="90px"
+                android:textColor="@color/colorHighLight"
+                android:gravity="center_vertical"/>
+        </LinearLayout>
+    </com.codig.CyberPotato.widget.PullDownDumperLayout>
+
+</android.support.constraint.ConstraintLayout>

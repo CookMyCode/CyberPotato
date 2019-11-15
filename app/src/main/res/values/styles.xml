@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <item name="colorPrimaryDark">@color/colorScreen</item>
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <item name="android:background">@color/colorScreen</item>
+        <!--<item name="android:typeface">serif</item>-->
+        <item name="android:fontFamily">@font/fixedsys</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+    <style name="SecondaryActivity" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:fontFamily">@font/fixedsys</item>
+        <item name="android:windowBackground">@color/colorScreen2</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+</resources>

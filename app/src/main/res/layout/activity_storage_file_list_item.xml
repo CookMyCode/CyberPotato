@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/storage_file_list_item_DecorativeFileIcon"
+        android:layout_width="107px"
+        android:layout_height="112px"
+        android:src="@drawable/file_icon_public"
+        android:scaleType="centerInside"
+        android:background="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="30px"/>
+    <TextView
+        android:id="@+id/storage_file_list_item_FileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:text="1234567892123123.txt"
+        android:textSize="65px"
+        android:maxEms="8"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintLeft_toRightOf="@+id/storage_file_list_item_DecorativeFileIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/storage_file_list_item_DecorativeFileIcon"
+        android:layout_marginLeft="50px"/>
+    <ImageButton
+        android:id="@+id/storage_file_list_item_ItemButton"
+        android:layout_width="740px"
+        android:layout_height="170px"
+        android:background="@drawable/list_item_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/ButtonSetting"
+        android:src="@drawable/setting_button"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_height="205px"
+        android:background="@drawable/button_selector"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.152"/>
+    <ImageButton
+        android:id="@+id/ButtonDevices"
+        android:src="@drawable/devices_button"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_height="205px"
+        android:background="@drawable/button_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonSetting"
+        android:layout_marginTop="15px"/>
+    <ImageButton
+        android:id="@+id/ButtonStorage"
+        android:src="@drawable/storage_button"
+        android:scaleType="centerInside"
+        android:layout_width="match_parent"
+        android:layout_height="205px"
+        android:background="@drawable/button_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonDevices"
+        android:layout_marginTop="15px"/>
+
+    <TextView
+        android:id="@+id/StatusView"
+        android:layout_width="1000px"
+        android:layout_height="260px"
+        android:background="@null"
+        android:text="@string/server_status"
+        android:textSize="80px"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonStorage"
+        android:layout_marginTop="80px"
+        android:keepScreenOn="true"/>
+    <ImageButton
+        android:id="@+id/ButtonMessage"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:src="@drawable/message_button"
+        android:scaleType="centerCrop"
+        android:background="@drawable/button_selector"
+        android:layout_marginBottom="10px"
+        android:layout_marginRight="20px"
+        app:layout_constraintBottom_toBottomOf="@+id/StatusView"
+        app:layout_constraintRight_toRightOf="@+id/StatusView"
+        android:layout_marginEnd="20px" />
+    <TextView
+        android:id="@+id/Log_1"
+        android:layout_width="1010px"
+        android:layout_height="100px"
+        android:background="@null"
+        android:textSize="80px"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StatusView" />
+    <TextView
+        android:id="@+id/Log_2"
+        android:layout_width="1010px"
+        android:layout_height="100px"
+        android:background="@null"
+        android:textSize="80px"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Log_1" />
+    <TextView
+        android:id="@+id/Log_3"
+        android:layout_width="1010px"
+        android:layout_height="100px"
+        android:background="@null"
+        android:textSize="80px"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Log_2" />
+    <TextView
+        android:id="@+id/Log_4"
+        android:layout_width="1010px"
+        android:layout_height="100px"
+        android:background="@null"
+        android:textSize="80px"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Log_3" />
+    <Button
+        android:id="@+id/ButtonEventLog"
+        android:layout_width="800px"
+        android:layout_height="400px"
+        android:background="@null"
+        app:layout_constraintLeft_toLeftOf="@+id/StatusView"
+        app:layout_constraintTop_toBottomOf="@+id/StatusView"/>
+
+</android.support.constraint.ConstraintLayout>

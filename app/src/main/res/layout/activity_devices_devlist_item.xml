@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null">
+    <ImageView
+        android:id="@+id/devices_Line"
+        android:layout_width="134px"
+        android:layout_height="303px"
+        android:scaleType="centerCrop"
+        android:background="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageButton
+        android:id="@+id/devices_DeviceButton"
+        android:layout_width="190px"
+        android:layout_height="183px"
+        android:scaleType="centerCrop"
+        android:src="@drawable/devices_device_button"
+        android:background="@drawable/button_selector"
+        app:layout_constraintLeft_toRightOf="@+id/devices_Line"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="40px"
+        android:layout_marginStart="40px" />
+    <TextView
+        android:id="@+id/devices_DeviceName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:maxEms="4"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:textSize="90px"
+        android:textColor="@color/colorHighLight"
+        app:layout_constraintTop_toBottomOf="@+id/devices_DeviceButton"
+        app:layout_constraintLeft_toLeftOf="@+id/devices_DeviceButton"
+        app:layout_constraintRight_toRightOf="@+id/devices_DeviceButton"/>
+
+</android.support.constraint.ConstraintLayout>
